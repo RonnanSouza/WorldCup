@@ -17,6 +17,7 @@ public class CLI {
             "4 - Time(s) com mais gols marcados\n" +
             "5 - Time(s) que sofreram gols\n" +
             "6 - Time(s) com saldo de gols negativo\n" +
+            "7 - Primeiro classificado de cada grupo\n" +
             "    digite \"sair\" para sair\n" +
             ">> ";
 
@@ -49,8 +50,10 @@ public class CLI {
                 case "6":
                     this.saldoNegativo();
                     break;
+                case "7":
+                    this.primeirosColocados();
+                    break;
                 case "sair":
-
                     return;
             }
         }
@@ -111,4 +114,7 @@ public class CLI {
         System.out.println(this.campeonato.getEquipesSaldoNegativo());
     }
 
+    private void primeirosColocados() {
+        System.out.println(this.campeonato.getPrimeiros());
+    }
 }

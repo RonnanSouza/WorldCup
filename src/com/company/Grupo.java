@@ -38,8 +38,10 @@ public class Grupo {
             times.add(time);
             Collections.sort(times, comparator);
         }
+    }
 
-
+    public String getPrimeiro() {
+        return String.format("Grupo %s: %s\n", this.getNome(), this.times.get(0));
     }
 
     public String getClassificação() {

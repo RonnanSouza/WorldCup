@@ -131,6 +131,15 @@ public class Campeonato {
 
         return times.toString();
     }
+
+    public String getPrimeiros() {
+        String primeiros = null;
+        for (Grupo grupo : grupos) {
+            primeiros += grupo.getPrimeiro();
+        }
+
+        return primeiros;
+    }
     @Override
     public String toString() {
         StringBuilder ret = new StringBuilder(String.format("Campeonato: %s \n", this.getNome()));
