@@ -56,7 +56,7 @@ public class Grupo {
     }
 
 
-    private boolean containsTime(Time time) {
+    public boolean containsTime(Time time) {
         for (int i = 0; i < times.size(); i++) {
             if (times.get(i).getNome().equals(time.getNome())) {
                 return true;
