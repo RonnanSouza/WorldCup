@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.Comparator;
 
-public class TimeComparator implements Comparator<Time> {
+public class TimeComparatorPorPontos implements Comparator<Time> {
 
     @Override
     public int compare(Time t1, Time t2) {

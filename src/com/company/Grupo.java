@@ -7,12 +7,12 @@ public class Grupo {
 
     private ArrayList<Time> times;
     private String nome;
-    private TimeComparator comparator;
+    private TimeComparatorPorPontos comparator;
 
     public Grupo(String nome) {
         this.times = new ArrayList<>();
         this.nome = nome;
-        this.comparator = new TimeComparator();
+        this.comparator = new TimeComparatorPorPontos();
     }
 
     public ArrayList<Time> getTimes() {
@@ -63,6 +63,16 @@ public class Grupo {
             }
         }
         return false;
+    }
+
+    public ArrayList<Time> getSaldoNegativo() {
+        ArrayList<Time> times = new ArrayList<>();
+        for (Time time: this.times) {
+            if (time.getGolsSofridos() > time.getGolsMarcados()) {
+                times.add(time);
+            }
+        }
+        return times;
     }
 
     @Override

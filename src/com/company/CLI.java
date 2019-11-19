@@ -7,27 +7,26 @@ import java.io.InputStreamReader;
 public class CLI {
 
     private Campeonato campeonato;
-    BufferedReader reader;
-    String input;
+    private BufferedReader reader;
+    private String input;
 
-    String csvPath = "/home/ronan/IdeaProjects/WorldCup/data/PracticalWork.csv";
-
-    String ops = String.format("\n\n### GERENCIADOR DE CAMPEONATOS ####\n" +
+    private String ops = "\n\n### GERENCIADOR DE CAMPEONATOS ####\n" +
             "1 - Carregar CSV\n" +
             "2 - Mostrar Classificação\n" +
             "3 - Adicionar novo Time\n" +
             "4 - Time(s) com mais gols marcados\n" +
             "5 - Time(s) que sofreram gols\n" +
+            "6 - Time(s) com saldo de gols negativo\n" +
             "    digite \"sair\" para sair\n" +
-            ">> ");
+            ">> ";
 
 
-    public CLI(Campeonato campeonato) {
+    CLI(Campeonato campeonato) {
         this.campeonato = campeonato;
         this.reader = new BufferedReader(new InputStreamReader(System.in));
     }
 
-    public void run() throws Exception {
+    void run() throws Exception {
         while (true) {
             System.out.print(this.ops);
             input = reader.readLine();
@@ -48,6 +47,7 @@ public class CLI {
                     this.goslSofridos();
                     break;
                 case "6":
+                    this.saldoNegativo();
                     break;
                 case "sair":
 
@@ -57,7 +57,9 @@ public class CLI {
     }
 
     private void carregaCSV() throws Exception{
-       this.campeonato.carregaCSV(csvPath);
+        String csvPath = "/home/ronan/IdeaProjects/WorldCup/data/PracticalWork.csv";
+
+        this.campeonato.carregaCSV(csvPath);
         System.out.print("carregando");
         Thread.sleep(100);
         System.out.print(".");
@@ -103,6 +105,10 @@ public class CLI {
         }else {
             System.out.println(times);
         }
+    }
+
+    private void saldoNegativo() {
+        System.out.println(this.campeonato.getEquipesSaldoNegativo());
     }
 
 }
