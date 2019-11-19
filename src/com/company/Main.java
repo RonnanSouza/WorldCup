@@ -11,6 +11,7 @@ public class Main {
         String ops = String.format("\n\n### GERENCIADOR DE CAMPEONATOS ####\n" +
                 "1 - Carregar CSV\n" +
                 "2 - Mostrar Classificação\n" +
+                "3 - Adicionar novo Time" +
                 "    digite \"sair\" para sair\n" +
                 ">> ");
 
@@ -36,6 +37,17 @@ public class Main {
             }
             if (input.equals("2")) {
                 System.out.println(campeonato.toString());
+            }
+
+            if (input.equals("3")) {
+                System.out.println("Digite as informações do time, seguindo o padrão do CSV.");
+                System.out.print(">>");
+                input = reader.readLine();
+                Time t = campeonato.convertStringToTime(input);
+                if (t != null) {
+                    campeonato.addTime(t);
+                }
+
             }
             System.out.print(ops);
             input = reader.readLine();
