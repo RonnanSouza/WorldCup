@@ -18,6 +18,7 @@ public class CLI {
             "5 - Time(s) que sofreram gols\n" +
             "6 - Time(s) com saldo de gols negativo\n" +
             "7 - Primeiro classificado de cada grupo\n" +
+            "8 - Mostrar informações de uma equipe\n" +
             "    digite \"sair\" para sair\n" +
             ">> ";
 
@@ -52,6 +53,12 @@ public class CLI {
                     break;
                 case "7":
                     this.primeirosColocados();
+                    break;
+                case "8":
+                    this.info();
+                    break;
+                default:
+                    System.out.println("Opção inválida");
                     break;
                 case "sair":
                     return;
@@ -116,5 +123,12 @@ public class CLI {
 
     private void primeirosColocados() {
         System.out.println(this.campeonato.getPrimeiros());
+    }
+
+    private void info() throws IOException {
+        System.out.println("Digite o nome do time;");
+        System.out.print(">> ");
+        this.input = reader.readLine();
+        System.out.println(campeonato.getInfo(input));
     }
 }

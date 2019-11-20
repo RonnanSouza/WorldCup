@@ -115,4 +115,17 @@ public class Time {
         return String.format("%s, pts: %d", this.getNome(), this.getPontos());
     }
 
+    public String info() {
+        return String.format("" +
+                " - Time: %s\n" +
+                "   pontos: %d\n" +
+                "   jogos: %d\n" +
+                "   vitorias: %d\n" +
+                "   empates: %d\n" +
+                "   derrotas: %d\n" +
+                "   gols marcados: %d\n" +
+                "   gols sofridos: %d\n", this.nome, this.pontos, this.jogos, this.vitorias, this.empates, this.derrotas
+        , this.golsMarcados, this.golsSofridos);
+    }
+
 }

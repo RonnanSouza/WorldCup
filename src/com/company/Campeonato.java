@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.SplittableRandom;
 
 public class Campeonato {
 
@@ -139,6 +140,17 @@ public class Campeonato {
         }
 
         return primeiros;
+    }
+
+    public String getInfo(String nome) {
+        for (Grupo grupo : grupos) {
+            Time t = grupo.getTime(nome);
+            if (t != null) {
+                return t.info();
+            }
+        }
+
+        return String.format("Nenhum time chamado %s nesse campeonato", nome);
     }
     @Override
     public String toString() {

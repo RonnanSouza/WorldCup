@@ -67,6 +67,15 @@ public class Grupo {
         return false;
     }
 
+    public Time getTime(String nome) {
+        for (Time time: times) {
+            if (time.getNome().equals(nome)) {
+                return time;
+            }
+        }
+        return null;
+    }
+
     public ArrayList<Time> getSaldoNegativo() {
         ArrayList<Time> times = new ArrayList<>();
         for (Time time: this.times) {
