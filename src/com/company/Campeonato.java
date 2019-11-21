@@ -152,6 +152,37 @@ public class Campeonato {
 
         return String.format("Nenhum time chamado %s nesse campeonato", nome);
     }
+
+    public String statistics() {
+        int jogos = 0, vitorias = 0, empates = 0, derrotas = 0, golsMarcados = 0, golsSofridos = 0;
+        float mediaGolsMarcados, mediaGolsSofridos;
+
+        for (Grupo grupo: this.grupos) {
+            for (Time time : grupo.getTimes()) {
+                jogos += time.getJogos();
+                vitorias += time.getVitorias();
+                empates += time.getEmpates();
+                derrotas += time.getDerrotas();
+                golsMarcados += time.getGolsMarcados();
+                golsSofridos += time.getGolsSofridos();
+            }
+        }
+
+        mediaGolsMarcados = golsMarcados / (float) jogos;
+        mediaGolsSofridos = golsMarcados / (float) jogos;
+
+        return String.format("Total de jogos= %d\n" +
+                "Total de vitórias= %d\n" +
+                "Total de empates= %d\n" +
+                "Total de derrotas= %d\n" +
+                "Total de golos marcados= %d\n" +
+                "Total de golos sofridos= %d\n" +
+                "Média de golos marcados por jogo= %.2f\n" +
+                "Média de golos sofridos por jogo= %.2f",
+                jogos, vitorias, empates, derrotas, golsMarcados, golsSofridos, mediaGolsMarcados, mediaGolsSofridos);
+    }
+
+
     @Override
     public String toString() {
         StringBuilder ret = new StringBuilder(String.format("Campeonato: %s \n", this.getNome()));

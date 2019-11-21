@@ -1,8 +1,7 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class CLI {
 
@@ -19,6 +18,7 @@ public class CLI {
             "6 - Time(s) com saldo de gols negativo\n" +
             "7 - Primeiro classificado de cada grupo\n" +
             "8 - Mostrar informações de uma equipe\n" +
+            "9 - Criar arquivo com estatisticas\n" +
             "    digite \"sair\" para sair\n" +
             ">> ";
 
@@ -30,6 +30,7 @@ public class CLI {
 
     void run() throws Exception {
         while (true) {
+            System.out.flush();
             System.out.print(this.ops);
             input = reader.readLine();
             switch (input) {
@@ -56,6 +57,9 @@ public class CLI {
                     break;
                 case "8":
                     this.info();
+                    break;
+                case "9":
+                    this.statistics();
                     break;
                 default:
                     System.out.println("Opção inválida");
@@ -123,6 +127,13 @@ public class CLI {
 
     private void primeirosColocados() {
         System.out.println(this.campeonato.getPrimeiros());
+    }
+
+    private void statistics() throws IOException {
+        PrintWriter writer = new PrintWriter("Statistics.txt", StandardCharsets.UTF_8);
+        String stats = this.campeonato.statistics();
+        writer.println(stats);
+        writer.close();
     }
 
     private void info() throws IOException {
