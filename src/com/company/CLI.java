@@ -10,15 +10,16 @@ public class CLI {
     private String input;
 
     private String ops = "\n\n### GERENCIADOR DE CAMPEONATOS ####\n" +
-            "1 - Carregar CSV\n" +
-            "2 - Mostrar Classificação\n" +
-            "3 - Adicionar novo Time\n" +
-            "4 - Time(s) com mais gols marcados\n" +
-            "5 - Time(s) que sofreram gols\n" +
-            "6 - Time(s) com saldo de gols negativo\n" +
-            "7 - Primeiro classificado de cada grupo\n" +
-            "8 - Mostrar informações de uma equipe\n" +
-            "9 - Criar arquivo com estatisticas\n" +
+            "1  - Carregar CSV\n" +
+            "2  - Mostrar Classificação\n" +
+            "3  - Adicionar novo Time\n" +
+            "4  - Time(s) com mais gols marcados\n" +
+            "5  - Time(s) que sofreram gols\n" +
+            "6  - Time(s) com saldo de gols negativo\n" +
+            "7  - Primeiro classificado de cada grupo\n" +
+            "8  - Mostrar informações de uma equipe\n" +
+            "9  - Criar arquivo com estatisticas\n" +
+            "10 - Remove times eliminados\n" +
             "    digite \"sair\" para sair\n" +
             ">> ";
 
@@ -60,6 +61,9 @@ public class CLI {
                     break;
                 case "9":
                     this.statistics();
+                    break;
+                case "10":
+                    this.removeEliminados();
                     break;
                 default:
                     System.out.println("Opção inválida");
@@ -141,5 +145,9 @@ public class CLI {
         System.out.print(">> ");
         this.input = reader.readLine();
         System.out.println(campeonato.getInfo(input));
+    }
+
+    private void removeEliminados() {
+        campeonato.removeEliminados();
     }
 }

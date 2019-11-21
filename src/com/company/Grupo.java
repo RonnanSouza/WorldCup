@@ -40,11 +40,7 @@ public class Grupo {
         }
     }
 
-    public String getPrimeiro() {
-        return String.format("Grupo %s: %s\n", this.getNome(), this.times.get(0));
-    }
-
-    public String getClassificação() {
+    public String getClassificacao() {
         StringBuilder ret = new StringBuilder(String.format("GRUPO %s ", nome));
         if (times.size() == 0) {
             return ret+" \n NÃO HÁ TIMES NESSE GRUPO";
@@ -84,6 +80,26 @@ public class Grupo {
             }
         }
         return times;
+    }
+
+    public String getPrimeiro() {
+        if (this.getTimes().size() == 0) {
+            return String.format("1ª GRUPO %s", this.getNome());
+        }
+        return this.getTimes().get(0).getNome();
+    }
+
+    public String getSegundo() {
+        if (this.getTimes().size() < 2) {
+            return String.format("2ª GRUPO %s", this.getNome());
+        }
+        return this.getTimes().get(1).getNome();
+    }
+
+    public void removeEliminados() {
+        while (this.getTimes().size() > 2) {
+            this.times.remove(this.times.size() - 1);
+        }
     }
 
     @Override

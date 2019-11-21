@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.SplittableRandom;
 
 public class Campeonato {
 
@@ -21,6 +20,7 @@ public class Campeonato {
         this.grupos = new ArrayList<>();
         this.golsMarcados = new HashMap<>();
         this.golsSofridos = new HashMap<>();
+        this.criarGrupos();
     }
 
     public String getNome() {
@@ -29,6 +29,12 @@ public class Campeonato {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    private void criarGrupos() {
+        for(char alphabet = 'A'; alphabet <='H'; alphabet++ ) {
+            this.grupos.add(new Grupo(String.valueOf(alphabet)));
+        }
     }
 
     public void carregaCSV(String csvPath) throws IOException {
@@ -182,6 +188,11 @@ public class Campeonato {
                 jogos, vitorias, empates, derrotas, golsMarcados, golsSofridos, mediaGolsMarcados, mediaGolsSofridos);
     }
 
+    public void removeEliminados() {
+        for (Grupo grupo :this.grupos ) {
+            grupo.removeEliminados();
+        }
+    }
 
     @Override
     public String toString() {
@@ -190,7 +201,7 @@ public class Campeonato {
             ret.append("NÃO HÁ GRUPOS CADASTRADOS NESSE CAMPEONATO");
         }else {
             for (Grupo grupo : grupos) {
-                ret.append(grupo.getClassificação());
+                ret.append(grupo.getClassificacao());
                 ret.append("\n");
             }
         }
