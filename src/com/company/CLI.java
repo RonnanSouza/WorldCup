@@ -20,6 +20,7 @@ public class CLI {
             "8  - Mostrar informações de uma equipe\n" +
             "9  - Criar arquivo com estatisticas\n" +
             "10 - Remove times eliminados\n" +
+            "11 - Criar arquivo com confrontos\n" +
             "    digite \"sair\" para sair\n" +
             ">> ";
 
@@ -64,6 +65,9 @@ public class CLI {
                     break;
                 case "10":
                     this.removeEliminados();
+                    break;
+                case "11":
+                    this.confrontos();
                     break;
                 default:
                     System.out.println("Opção inválida");
@@ -149,5 +153,12 @@ public class CLI {
 
     private void removeEliminados() {
         campeonato.removeEliminados();
+    }
+
+    private void confrontos() throws IOException {
+        PrintWriter writer = new PrintWriter("FinalStageGames.txt", StandardCharsets.UTF_8);
+        String stats = this.campeonato.getConfrontos();
+        writer.println(stats);
+        writer.close();
     }
 }
