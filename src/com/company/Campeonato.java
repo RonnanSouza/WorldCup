@@ -12,8 +12,8 @@ public class Campeonato {
     private ArrayList<Grupo> grupos;
     private String nome;
 
-    private HashMap<Integer,ArrayList<String>> golsMarcados;
-    private HashMap<Integer,ArrayList<String>> golsSofridos;
+    private HashMap<Integer,ArrayList<Time>> golsMarcados;
+    private HashMap<Integer,ArrayList<Time>> golsSofridos;
 
     public Campeonato(String nome) {
         this.nome = nome;
@@ -102,17 +102,17 @@ public class Campeonato {
             if (grupo.getNome().equals(time.getGrupo())) {
                 grupo.addTime(time);
                 if (this.golsMarcados.containsKey(time.getGolsMarcados())) {
-                    this.golsMarcados.get(time.getGolsMarcados()).add(time.getNome());
+                    this.golsMarcados.get(time.getGolsMarcados()).add(time);
                 } else {
                     this.golsMarcados.put(time.getGolsMarcados(), new ArrayList<>());
-                    this.golsMarcados.get(time.getGolsMarcados()).add(time.getNome());
+                    this.golsMarcados.get(time.getGolsMarcados()).add(time);
                 }
 
                 if (this.golsSofridos.containsKey(time.getGolsSofridos())) {
-                    this.golsSofridos.get(time.getGolsSofridos()).add(time.getNome());
+                    this.golsSofridos.get(time.getGolsSofridos()).add(time);
                 } else {
                     this.golsSofridos.put(time.getGolsSofridos(), new ArrayList<>());
-                    this.golsSofridos.get(time.getGolsSofridos()).add(time.getNome());
+                    this.golsSofridos.get(time.getGolsSofridos()).add(time);
                 }
             }
         }
@@ -211,14 +211,12 @@ public class Campeonato {
 
     @Override
     public String toString() {
-        StringBuilder ret = new StringBuilder(String.format("Campeonato: %s \n", this.getNome()));
-        if (grupos.size() == 0) {
-            ret.append("NÃO HÁ GRUPOS CADASTRADOS NESSE CAMPEONATO");
-        }else {
-            for (Grupo grupo : grupos) {
-                ret.append(grupo.getClassificacao());
-                ret.append("\n");
-            }
+        StringBuilder ret = new StringBuilder();
+        ret.append("" +
+                "| Grp | Pos | Equipa          | Pts| J  | V  | E  | D  | GM | GS | GD |\n" +
+                "|=====|=====|=================|====|====|====|====|====|====|====|====|\n");
+        for (Grupo grupo : grupos) {
+            ret.append(grupo.getClassificacao());
         }
 
         return ret.toString();

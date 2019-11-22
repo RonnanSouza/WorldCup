@@ -41,16 +41,24 @@ public class Grupo {
     }
 
     public String getClassificacao() {
-        StringBuilder ret = new StringBuilder(String.format("GRUPO %s ", nome));
-        if (times.size() == 0) {
-            return ret+" \n NÃO HÁ TIMES NESSE GRUPO";
+        String ret = "";
+
+        for (int i = 0; i < this.times.size(); i++) {
+            Time t = this.times.get(i);
+            String pts = ("   "+t.getPontos());
+            String gm = ("   "+t.getGolsMarcados());
+            String gs = ("   "+t.getGolsSofridos());
+            String gd = ("   "+t.getSaldo());
+
+            ret += ("|"+this.nome + "     ").substring(0, 6)+"|"+
+                    ("    "+i+1).substring(0, 5)+"|"+(t.getNome()+"                  ").substring(0, 17)+"|"+
+                    pts.substring(pts.length()-4)+"|"+("   "+t.getJogos()).substring(0, 4)+"|"+
+                    ("   "+t.getVitorias()).substring(0, 4)+"|"+("   "+t.getEmpates()).substring(0, 4)+"|"+
+                    ("   "+t.getDerrotas()).substring(0, 4)+"|"+gm.substring(gm.length()-4)+"|"+
+                    gs.substring(gs.length()-4)+"|"+gd.substring(gd.length()-4)+"|\n";
         }
-        else {
-            for (int i = 0; i < times.size(); i++) {
-                ret.append(String.format("\n  %d - %s", i + 1, times.get(i).toString()));
-            }
-        }
-        return ret.toString();
+
+        return ret;
     }
 
 

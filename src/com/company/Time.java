@@ -106,6 +106,10 @@ public class Time {
         this.nome = nome;
     }
 
+    public int getSaldo() {
+        return this.getGolsMarcados() - this.golsSofridos;
+    }
+
     /**
      *
      * @return Nome da equipe seguido pelo número de pontos da equipe na competição
@@ -116,16 +120,9 @@ public class Time {
     }
 
     public String info() {
-        return String.format("" +
-                " - Time: %s\n" +
-                "   pontos: %d\n" +
-                "   jogos: %d\n" +
-                "   vitorias: %d\n" +
-                "   empates: %d\n" +
-                "   derrotas: %d\n" +
-                "   gols marcados: %d\n" +
-                "   gols sofridos: %d\n", this.nome, this.pontos, this.jogos, this.vitorias, this.empates, this.derrotas
-        , this.golsMarcados, this.golsSofridos);
+        return String.format("|%s |%s | %d| %d| %d| %d| %d| %d| %d|\n",
+                this.grupo, this.nome, this.pontos, this.jogos, this.vitorias, this.empates, this.derrotas,
+                this.golsMarcados, this.golsSofridos);
     }
 
 }
