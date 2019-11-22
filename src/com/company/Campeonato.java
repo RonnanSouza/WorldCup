@@ -12,8 +12,8 @@ public class Campeonato {
     private ArrayList<Grupo> grupos;
     private String nome;
 
-    private HashMap<Integer,ArrayList<Time>> golsMarcados;
-    private HashMap<Integer,ArrayList<Time>> golsSofridos;
+    private HashMap<Integer,ArrayList<String>> golsMarcados;
+    private HashMap<Integer,ArrayList<String>> golsSofridos;
 
     public Campeonato(String nome) {
         this.nome = nome;
@@ -102,17 +102,17 @@ public class Campeonato {
             if (grupo.getNome().equals(time.getGrupo())) {
                 grupo.addTime(time);
                 if (this.golsMarcados.containsKey(time.getGolsMarcados())) {
-                    this.golsMarcados.get(time.getGolsMarcados()).add(time);
+                    this.golsMarcados.get(time.getGolsMarcados()).add(time.getNome());
                 } else {
                     this.golsMarcados.put(time.getGolsMarcados(), new ArrayList<>());
-                    this.golsMarcados.get(time.getGolsMarcados()).add(time);
+                    this.golsMarcados.get(time.getGolsMarcados()).add(time.getNome());
                 }
 
                 if (this.golsSofridos.containsKey(time.getGolsSofridos())) {
-                    this.golsSofridos.get(time.getGolsSofridos()).add(time);
+                    this.golsSofridos.get(time.getGolsSofridos()).add(time.getNome());
                 } else {
                     this.golsSofridos.put(time.getGolsSofridos(), new ArrayList<>());
-                    this.golsSofridos.get(time.getGolsSofridos()).add(time);
+                    this.golsSofridos.get(time.getGolsSofridos()).add(time.getNome());
                 }
             }
         }
@@ -121,38 +121,62 @@ public class Campeonato {
     public String getMaxGolsMarcados() {
         Integer max = Collections.max(this.golsMarcados.keySet());
 
-        return this.golsMarcados.get(max).toString();
+        StringBuilder ret = new StringBuilder();
+
+        for (String time: this.golsMarcados.get(max)) {
+            ret.append(this.getInfo(time));
+        }
+
+        return ret.toString();
     }
 
-    public String getGolsSofridos(int numGols) throws Exception{
-        return this.golsSofridos.get(numGols).toString();
+    public String getGolsSofridos(int numGols) {
+
+        StringBuilder ret = new StringBuilder();
+        for (String time: this.golsSofridos.get(numGols)) {
+            ret.append(this.getInfo(time));
+        }
+
+        return ret.toString();
     }
 
     public String getEquipesSaldoNegativo() {
-        ArrayList<Time> times = new ArrayList<>();
+        ArrayList<String> times = new ArrayList<>();
         for (Grupo grupo : grupos) {
             times.addAll(grupo.getSaldoNegativo());
         }
 
-        Collections.sort(times, new TimeComparatorAlfabeto());
+        Collections.sort(times);
 
-        return times.toString();
+        StringBuilder ret = new StringBuilder();
+        for (String time: times) {
+            ret.append(this.getInfo(time));
+        }
+
+        return ret.toString();
+
+
     }
 
     public String getPrimeiros() {
-        String primeiros = null;
+        String primeiros = "";
         for (Grupo grupo : grupos) {
-            primeiros += grupo.getPrimeiro();
+            if (grupo.getTimes().size() > 0) {
+                primeiros += grupo.getTimes().get(0).info(1);
+            }
         }
 
         return primeiros;
     }
 
     public String getInfo(String nome) {
+
         for (Grupo grupo : grupos) {
-            Time t = grupo.getTime(nome);
-            if (t != null) {
-                return t.info();
+            for (int i = 0; i < grupo.getTimes().size(); i++) {
+                Time t = grupo.getTime(nome);
+                if (t != null) {
+                    return t.info(i+1);
+                }
             }
         }
 

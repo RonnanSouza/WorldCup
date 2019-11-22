@@ -107,6 +107,7 @@ public class CLI {
     }
 
     private void golsMarcados() {
+        System.out.println(getHeader());
         System.out.println(this.campeonato.getMaxGolsMarcados());
     }
 
@@ -115,10 +116,10 @@ public class CLI {
         System.out.print(">> ");
         this.input = reader.readLine();
         String times = null;
+        System.out.println(getHeader());
         try {
             times = this.campeonato.getGolsSofridos(Integer.parseInt(this.input));
         } catch (Exception e) {
-            System.out.printf("Nenhum time sofreu %s gol(s)\n", input);
             return;
         }
 
@@ -130,10 +131,12 @@ public class CLI {
     }
 
     private void saldoNegativo() {
+        System.out.println(getHeader());
         System.out.println(this.campeonato.getEquipesSaldoNegativo());
     }
 
     private void primeirosColocados() {
+        System.out.println(getHeader());
         System.out.println(this.campeonato.getPrimeiros());
     }
 
@@ -148,6 +151,7 @@ public class CLI {
         System.out.println("Digite o nome do time;");
         System.out.print(">> ");
         this.input = reader.readLine();
+        System.out.println(getHeader());
         System.out.println(campeonato.getInfo(input));
     }
 
@@ -160,5 +164,10 @@ public class CLI {
         String stats = this.campeonato.getConfrontos();
         writer.println(stats);
         writer.close();
+    }
+
+    private String getHeader() {
+        return "| Grp | Pos | Equipa          | Pts| J  | V  | E  | D  | GM | GS | GD |\n" +
+               "|=====|=====|=================|====|====|====|====|====|====|====|====|";
     }
 }

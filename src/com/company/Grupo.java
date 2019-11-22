@@ -45,17 +45,8 @@ public class Grupo {
 
         for (int i = 0; i < this.times.size(); i++) {
             Time t = this.times.get(i);
-            String pts = ("   "+t.getPontos());
-            String gm = ("   "+t.getGolsMarcados());
-            String gs = ("   "+t.getGolsSofridos());
-            String gd = ("   "+t.getSaldo());
 
-            ret += ("|"+this.nome + "     ").substring(0, 6)+"|"+
-                    ("    "+i+1).substring(0, 5)+"|"+(t.getNome()+"                  ").substring(0, 17)+"|"+
-                    pts.substring(pts.length()-4)+"|"+("   "+t.getJogos()).substring(0, 4)+"|"+
-                    ("   "+t.getVitorias()).substring(0, 4)+"|"+("   "+t.getEmpates()).substring(0, 4)+"|"+
-                    ("   "+t.getDerrotas()).substring(0, 4)+"|"+gm.substring(gm.length()-4)+"|"+
-                    gs.substring(gs.length()-4)+"|"+gd.substring(gd.length()-4)+"|\n";
+            ret += t.info(i+1);
         }
 
         return ret;
@@ -80,11 +71,11 @@ public class Grupo {
         return null;
     }
 
-    public ArrayList<Time> getSaldoNegativo() {
-        ArrayList<Time> times = new ArrayList<>();
+    public ArrayList<String> getSaldoNegativo() {
+        ArrayList<String> times = new ArrayList<>();
         for (Time time: this.times) {
             if (time.getGolsSofridos() > time.getGolsMarcados()) {
-                times.add(time);
+                times.add(time.getNome());
             }
         }
         return times;

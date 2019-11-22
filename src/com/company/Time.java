@@ -119,10 +119,20 @@ public class Time {
         return String.format("%s, pts: %d", this.getNome(), this.getPontos());
     }
 
-    public String info() {
-        return String.format("|%s |%s | %d| %d| %d| %d| %d| %d| %d|\n",
-                this.grupo, this.nome, this.pontos, this.jogos, this.vitorias, this.empates, this.derrotas,
-                this.golsMarcados, this.golsSofridos);
+    public String info(int posicao) {
+        String pts = ("   "+this.getPontos());
+        String gm = ("   "+this.getGolsMarcados());
+        String gs = ("   "+this.getGolsSofridos());
+        String gd = ("   "+this.getSaldo());
+
+
+        return  ("|"+this.getGrupo() + "     ").substring(0, 6)+"|"+
+                ("    "+posicao).substring(0, 5)+"|"+(this.getNome()+"                  ").substring(0, 17)+"|"+
+                pts.substring(pts.length()-4)+"|"+("   "+this.getJogos()).substring(0, 4)+"|"+
+                ("   "+this.getVitorias()).substring(0, 4)+"|"+("   "+this.getEmpates()).substring(0, 4)+"|"+
+                ("   "+this.getDerrotas()).substring(0, 4)+"|"+gm.substring(gm.length()-4)+"|"+
+                gs.substring(gs.length()-4)+"|"+gd.substring(gd.length()-4)+"|\n";
+
     }
 
 }
