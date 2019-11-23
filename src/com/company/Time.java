@@ -38,72 +38,36 @@ public class Time {
         return jogos;
     }
 
-    public void setJogos(int jogos) {
-        this.jogos = jogos;
-    }
-
     public int getVitorias() {
         return vitorias;
-    }
-
-    public void setVitorias(int vitorias) {
-        this.vitorias = vitorias;
     }
 
     public int getEmpates() {
         return empates;
     }
 
-    public void setEmpates(int empates) {
-        this.empates = empates;
-    }
-
     public int getDerrotas() {
         return derrotas;
-    }
-
-    public void setDerrotas(int derrotas) {
-        this.derrotas = derrotas;
     }
 
     public int getPontos() {
         return pontos;
     }
 
-    public void setPontos(int pontos) {
-        this.pontos = pontos;
-    }
-
     public int getGolsMarcados() {
         return golsMarcados;
-    }
-
-    public void setGolsMarcados(int golsMarcados) {
-        this.golsMarcados = golsMarcados;
     }
 
     public int getGolsSofridos() {
         return golsSofridos;
     }
 
-    public void setGolsSofridos(int golsSofridos) {
-        this.golsSofridos = golsSofridos;
-    }
-
     public String getGrupo() {
         return grupo;
     }
 
-    public void setGrupo(String grupo) {
-        this.grupo = grupo;
-    }
-
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public int getSaldo() {
@@ -119,12 +83,18 @@ public class Time {
         return String.format("%s, pts: %d", this.getNome(), this.getPontos());
     }
 
+    /**
+     * retorna string com informações do time
+     * @param posicao posição do time no campeonato
+     * @return
+     */
     public String info(int posicao) {
+
+        // eu adicionei espaços em branco nas strings para poder cortar do tamanho certo e manter todas alinhadas
         String pts = ("   "+this.getPontos());
         String gm = ("   "+this.getGolsMarcados());
         String gs = ("   "+this.getGolsSofridos());
         String gd = ("   "+this.getSaldo());
-
 
         return  ("|"+this.getGrupo() + "     ").substring(0, 6)+"|"+
                 ("    "+posicao).substring(0, 5)+"|"+(this.getNome()+"                  ").substring(0, 17)+"|"+
