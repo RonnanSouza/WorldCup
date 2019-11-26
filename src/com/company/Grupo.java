@@ -33,7 +33,7 @@ public class Grupo {
     public void addTime(Time time) {
         if (containsTime(time)) {
             System.out.println("Time já existente, não é possível inserir.");
-        }else {
+        } else {
             times.add(time);
             Collections.sort(times, comparator);
         }

@@ -207,7 +207,7 @@ public class Campeonato {
                 "Total de derrotas= %d\n" +
                 "Total de golos marcados= %d\n" +
                 "Total de golos sofridos= %d\n" +
-                "Média de golos marcados por jogo= %.2f\n" +
+                "Média de golos marcados por jogo= %.1f\n" +
                 "Média de golos sofridos por jogo= %.1f",
                 jogos, vitorias, empates, derrotas, golsMarcados, golsSofridos, mediaGolsMarcados, mediaGolsSofridos);
     }
@@ -224,10 +224,10 @@ public class Campeonato {
             Grupo g1 = this.grupos.get(i);
             Grupo g2 = this.grupos.get(i+1);
 
-            confrontos.append(String.format("%s,1º,%s - %s,1º,%s\n",
+            confrontos.append(String.format("%s,1º,%s - %s,2º,%s\n",
                     g1.getNome(), g1.getPrimeiro(), g2.getNome(), g2.getSegundo()));
-            confrontos.append(String.format("%s,1º,%s - %s,1º,%s\n",
-                    g1.getNome(), g1.getSegundo(), g2.getNome(), g2.getPrimeiro()));
+            confrontos.append(String.format("%s,2º,%s - %s,1º,%s\n",
+                    g2.getNome(), g2.getSegundo(), g1.getNome(), g1.getPrimeiro()));
         }
 
         return confrontos.toString();

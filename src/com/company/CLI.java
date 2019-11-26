@@ -241,8 +241,8 @@ public class CLI {
      */
     private void confrontos() throws IOException {
         PrintWriter writer = new PrintWriter("FinalStageGames.txt", StandardCharsets.UTF_8);
-        String stats = this.campeonato.getConfrontos();
-        writer.println(stats);
+        String confrontos = this.campeonato.getConfrontos();
+        writer.println(confrontos);
         writer.close();
     }
 
